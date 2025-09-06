@@ -3,10 +3,17 @@ body {
   background: rgb(90, 63, 63);
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
 }
 
 .container {
   padding: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .navbar {
@@ -16,12 +23,14 @@ body {
   background: #333;
   padding: 10px 20px;
   color: white;
+  flex-wrap: wrap; /* يخليها تنزل تحت لو الشاشة صغيرة */
 }
 
 .navbar a {
   color: white;
   margin-left: 15px;
   text-decoration: none;
+  font-size: 1rem;
 }
 
 .search-input,
@@ -34,7 +43,7 @@ body {
 
 .job-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
 }
 
@@ -42,7 +51,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 220px; /* أقل ارتفاع */
+  min-height: 220px;
   background: #a89999;
   border: 1px solid #eee;
   border-radius: 12px;
@@ -50,7 +59,6 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 
 .job-card:hover {
   transform: translateY(-5px);
@@ -73,8 +81,10 @@ body {
   margin-top: 15px;
   display: flex;
   gap: 10px;
+  flex-wrap: wrap; /* لو الشاشة صغيرة الأزرار تنزل تحت */
 }
-.clearAll{
+
+.clearAll {
   color: white;
   background: rgb(77, 72, 72);
   padding: 10px;
@@ -82,10 +92,10 @@ body {
   border-radius: 10px;
   transition: background 0.2s ease;
 }
+
 .clearAll:hover {
   opacity: 0.9;
   background: #a13838;
-
 }
 
 .actions a {
@@ -132,4 +142,36 @@ body {
 
 .actions button:not(.btn-remove):hover {
   background: #2f855a;
+}
+
+/* 📱 الموبايل */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar a {
+    margin: 5px 0;
+    font-size: 0.95rem;
+  }
+
+  .job-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .job-card p {
+    font-size: 0.85rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .actions a,
+  .actions button {
+    width: 100%;
+    text-align: center;
+  }
 }
